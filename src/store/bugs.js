@@ -1,34 +1,61 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createSelector } from 'reselect';
+import { apiCallBegan } from './api';
 
 let lastId = 0;
 
 const slice = createSlice({
 	name: 'bugs',
-	initialState: [],
+	initialState: {
+		list: [],
+		loading: false,
+		lastFetch: null
+	},
 	reducers: {
-		// actions => action handlers
+		bugsRequested: (bugs, action) => {
+			bugs.loading = true;
+		},
+		bugsReceived: (bugs, action) => {
+			bugs.list = action.payload;
+			bugs.loading = false;
+		},
 		bugAdded: (bugs, action) => {
-			bugs.push({
+			bugs.list.push({
 				id: ++lastId,
 				description: action.payload.description,
 				resolved: false
 			});
 		},
 		bugResolved: (bugs, action) => {
-			const index = bugs.findIndex(bug => bug.id === action.payload.id);
-			bugs[index].resolved = true;
+			const index = bugs.list.findIndex(bug => bug.id === action.payload.id);
+			bugs.list[index].resolved = true;
 		},
 		bugAssignedToUser: (bugs, action) => {
 			const { bugId, userId } = action.payload;
-			const index = bugs.findIndex(bug => bug.id === bugId);
-			bugs[index].userId = userId;
+			const index = bugs.list.findIndex(bug => bug.id === bugId);
+			bugs.list[index].userId = userId;
 		}
 	}
 });
 
-export const { bugAdded, bugResolved, bugAssignedToUser } = slice.actions;
+export const {
+	bugAdded,
+	bugResolved,
+	bugAssignedToUser,
+	bugsReceived,
+	bugsRequested
+} = slice.actions;
 export default slice.reducer;
+
+//Action Creators
+const url = '/bugs';
+
+export const loadBugs = () =>
+	apiCallBegan({
+		url,
+		onStart: bugsRequested.type,
+		onSucess: bugsReceived.type
+	});
 
 //Selector
 export const getUnresolvedBugs = createSelector(
