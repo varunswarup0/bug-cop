@@ -3,6 +3,10 @@ import configureStore from './store/configureStore';
 const store = configureStore();
 
 store.dispatch({
-	type: 'error',
-	payload: { message: 'An error accured' }
+	type: 'apiCallBegan', //apiRequest,
+	payload: {
+		url: '/bugs',
+		onSucess: 'bugsReceived',
+		onError: 'apiReqquestFailed'
+	}
 });
