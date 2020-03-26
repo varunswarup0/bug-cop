@@ -19,13 +19,13 @@ const slice = createSlice({
 			bugs.loading = false;
 			bugs.lastFetch = Date.now();
 		},
+		bugsRequestFailed: (bugs, action) => {
+			bugs.loading = false;
+		},
 		//command - event
 		// addBug - bugAdded
 		bugAdded: (bugs, action) => {
 			bugs.list.push(action.payload);
-		},
-		bugsRequestFailed: (bugs, action) => {
-			bugs.loading = false;
 		},
 		bugResolved: (bugs, action) => {
 			const index = bugs.list.findIndex(bug => bug.id === action.payload.id);
@@ -39,7 +39,7 @@ const slice = createSlice({
 	}
 });
 
-export const {
+const {
 	bugAdded,
 	bugResolved,
 	bugAssignedToUser,
