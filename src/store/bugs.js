@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createSelector } from 'reselect';
+import axios from 'axios';
 import { apiCallBegan } from './api';
 import moment from 'moment';
 
@@ -39,7 +40,7 @@ const slice = createSlice({
 	}
 });
 
-const {
+export const {
 	bugAdded,
 	bugResolved,
 	bugAssignedToUser,
@@ -63,18 +64,31 @@ export const loadBugs = () => (dispatch, getState) => {
 		apiCallBegan({
 			url,
 			onStart: bugsRequested.type,
-			onSucess: bugsReceived.type,
+			onSuccess: bugsReceived.type,
 			onError: bugsRequestFailed.type
 		})
 	);
 };
+
+// wihout making an API call
+// export const addBug = bug => {
+// 	try {
+// 		const response = axios.post(url, bug);
+// 	} catch (error) {
+// 		dispatch({ type: 'error' });
+// 	}
+// };
+
+// make an API call
+// promisse resolved => dispatch(success)
+// promise failed => dispatch(error)
 
 export const addBug = bug =>
 	apiCallBegan({
 		url,
 		method: 'post',
 		data: bug,
-		onSucess: bugAdded.type
+		onSuccess: bugAdded.type
 	});
 
 export const resolveBug = id =>
@@ -82,7 +96,7 @@ export const resolveBug = id =>
 		url: url + '/' + id,
 		method: 'patch',
 		data: { resolved: true },
-		onSucess: bugResolved.type
+		onSuccess: bugResolved.type
 	});
 
 export const assignBugToUser = (bugId, userId) =>
@@ -90,7 +104,7 @@ export const assignBugToUser = (bugId, userId) =>
 		url: url + '/' + bugId,
 		method: 'patch',
 		data: { userId },
-		onSucess: bugAssignedToUser.type
+		onSuccess: bugAssignedToUser.type
 	});
 
 //Selector
