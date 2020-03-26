@@ -26,6 +26,9 @@ const slice = createSlice({
 				resolved: false
 			});
 		},
+		bugsRequestFailed: (bugs, action) => {
+			bugs.loading = false;
+		},
 		bugResolved: (bugs, action) => {
 			const index = bugs.list.findIndex(bug => bug.id === action.payload.id);
 			bugs.list[index].resolved = true;
@@ -43,7 +46,8 @@ export const {
 	bugResolved,
 	bugAssignedToUser,
 	bugsReceived,
-	bugsRequested
+	bugsRequested,
+	bugsRequestFailed
 } = slice.actions;
 export default slice.reducer;
 
@@ -54,7 +58,8 @@ export const loadBugs = () =>
 	apiCallBegan({
 		url,
 		onStart: bugsRequested.type,
-		onSucess: bugsReceived.type
+		onSucess: bugsReceived.type,
+		onError: bugsRequestFailed.type
 	});
 
 //Selector
