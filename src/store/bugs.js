@@ -70,15 +70,6 @@ export const loadBugs = () => (dispatch, getState) => {
 	);
 };
 
-// wihout making an API call
-// export const addBug = bug => {
-// 	try {
-// 		const response = axios.post(url, bug);
-// 	} catch (error) {
-// 		dispatch({ type: 'error' });
-// 	}
-// };
-
 // make an API call
 // promisse resolved => dispatch(success)
 // promise failed => dispatch(error)
