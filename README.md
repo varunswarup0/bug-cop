@@ -6,11 +6,9 @@
 > A Fast and scalable App made with Redux 
 > which will serve as a boilerplate for future Redux-based apps 
 
-  * Redux Toolkit to kickstart Redux app
-  * Redux store design
+  * Includes Redux Toolkit to kickstart Redux app
   * React and Redux connected via react-redux
-  * Industry best practices and recommended patterns
-  * Prepare for technical interviews
+  * Follows industry best practices and recommended patterns
 
 
 
@@ -18,4 +16,4 @@
 
 
 
-![alt text](https://lh3.googleusercontent.com/j7mE-7swXtAgRV9lWIsAF6U4XxRmUIOgoTAKjqICxSCDr__Q42wqBKJro28tlyhE9v3IJwunVWTj52tSszcBd69RdGz8pjC9ER38ORHB=s799)
+![alt text](https://www.imdb.com/title/tt8292872/mediaviewer/rm2546561536)
