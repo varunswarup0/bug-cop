@@ -3,8 +3,7 @@
 |[DOCUMENTATION](https://redux.js.org/ "Redux's Docs")       |
 | ------------- |
 
-> A Fast and scalable App made with Redux 
-> which will serve as a boilerplate for future Redux-based apps 
+> Ever wondering what the day to day developer life is like... this basically sums it up. 
 
   * Includes Redux Toolkit to kickstart Redux app
   * React and Redux connected via react-redux
