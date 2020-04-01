@@ -17,4 +17,4 @@
 
 ![alt text](https://github.com/varunswarup0/bug-cop/blob/master/bug-cop.jpg)
 
-![alt text](https://github.com/varunswarup0/bug-cop/blob/master/bugCop.png)
+![alt text](https://github.com/varunswarup0/bug-cop/blob/master/bugCop2.png)
